@@ -44,7 +44,7 @@ class Profile extends React.Component {
     AxiosConfig.get('/character/246/pictures').then(response => {
       this.setState({
         pictures: response.data.pictures.map((picture, index) => {
-          return (<GalleryItem image={picture.large} />)
+          return (<GalleryItem image={picture.large} imageNumber={index} key={index} />)
         }),
         postCount: response.data.pictures.length
       })
