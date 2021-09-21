@@ -2,7 +2,6 @@ import React from 'react';
 import Styles from './profile.module.css';
 import Logo from '../../assets/logo.png';
 import AxiosConfig from '../../utils/axiosConfig';
-import GalleryItem from '../galleryItem';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -23,17 +22,6 @@ class Profile extends React.Component {
         profileImage: response.data.image_url,
         episodeCount: response.data.episodes,
         rank: response.data.rank
-      })
-    }).catch(error => {
-      console.log(error)
-    });
-
-    AxiosConfig.get('/anime/38000/pictures').then(response => {
-      this.setState({
-        pictures: response.data.pictures.map((picture, index) => {
-          return (<GalleryItem image={picture.large} imageNumber={index} key={index} />)
-        }),
-        postCount: response.data.pictures.length
       })
     }).catch(error => {
       console.log(error)
