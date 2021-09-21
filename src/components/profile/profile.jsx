@@ -9,7 +9,6 @@ class Profile extends React.Component {
     super(props);
 
     this.state = {
-      name: '',
       profileImage: '',
       postCount: '',
       episodeCount: '',
@@ -21,7 +20,6 @@ class Profile extends React.Component {
   componentDidMount() {
     AxiosConfig.get('/anime/38000').then(response => {
       this.setState({
-        name: response.data.title_english,
         profileImage: response.data.image_url,
         episodeCount: response.data.episodes,
         rank: response.data.rank
@@ -51,14 +49,12 @@ class Profile extends React.Component {
         </header>
         <div className={Styles.profileContainer}>
           <h1 className={Styles.challengeHeading}>Stellar Minore Coding Challenge</h1>
-          <br />
-          <br />
           <section className={`offset-md-2 col-md-8 mt-3 ${Styles.profile}`}>
             <div className={Styles.profileImg}>
               <img src={this.state.profileImage} className={Styles.profileImg} alt="profile" />
             </div>
             <div className={Styles.info}>
-              <h2 className="mt-5">{this.state.name}</h2>
+              <h2 className="mt-5 name">-</h2>
               <div className={Styles.stats}>
                 <div className={Styles.statItem}>
                   <span className={Styles.statData} id="post-count">{this.state.postCount}</span><span> Posts</span>
