@@ -12,36 +12,25 @@ class Profile extends React.Component {
       name: '',
       profileImage: '',
       postCount: '',
-      followerCount: '',
-      followingCount: '',
-      detailList: [],
+      episodeCount: '',
+      rank: '',
       pictures: []
     };
   }
 
   componentDidMount() {
-    AxiosConfig.get('/character/246').then(response => {
-      console.log(response);
-
-      var bioArray = response.data.about.split('\n');
-      var detailList = []
-
-      for (let i = 0; i < 6; i++) {
-        detailList.push(<li key={i}>{bioArray[i].substring(0, bioArray[i].length - 3)}</li>);
-      }
-
+    AxiosConfig.get('/anime/38000').then(response => {
       this.setState({
-        name: response.data.name,
+        name: response.data.title_english,
         profileImage: response.data.image_url,
-        followerCount: response.data.animeography.length,
-        followingCount: response.data.mangaography.length,
-        detailList: detailList
+        episodeCount: response.data.episodes,
+        rank: response.data.rank
       })
     }).catch(error => {
       console.log(error)
     });
 
-    AxiosConfig.get('/character/246/pictures').then(response => {
+    AxiosConfig.get('/anime/38000/pictures').then(response => {
       this.setState({
         pictures: response.data.pictures.map((picture, index) => {
           return (<GalleryItem image={picture.large} imageNumber={index} key={index} />)
@@ -72,20 +61,14 @@ class Profile extends React.Component {
               <h2 className="mt-5">{this.state.name}</h2>
               <div className={Styles.stats}>
                 <div className={Styles.statItem}>
-                  <span className={Styles.statData} id="post-count">{this.state.postCount}</span><span> posts</span>
+                  <span className={Styles.statData} id="post-count">{this.state.postCount}</span><span> Posts</span>
                 </div>
                 <div className={Styles.statItem}>
-                  <span className={Styles.statData} id="follower-count">{this.state.followerCount}</span><span> followers</span>
+                  <span className={Styles.statData} id="episode-count">{this.state.episodeCount}</span><span> Episodes</span>
                 </div>
                 <div className={Styles.statItem}>
-                  <span className={Styles.statData} id="following-count">{this.state.followingCount}</span><span> following</span>
+                  <span className={Styles.statData} id="rank">{this.state.rank}</span><span> Rank</span>
                 </div>
-              </div>
-              <br />
-              <div id="bio">
-                <ul id="detail-list">
-                	{this.state.detailList}
-                </ul>
               </div>
             </div>
           </section>
