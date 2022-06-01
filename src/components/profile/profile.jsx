@@ -32,7 +32,7 @@ class Profile extends React.Component {
     return (
       <div className={Styles.mainContainer}>
         <header>
-          <img alt="Rekd logo" src={Logo} />
+          <img alt="Stellar logo" src={Logo} />
           <input type="text" placeholder="&#xf002; Search"/>
         </header>
         <div className={Styles.profileContainer}>
