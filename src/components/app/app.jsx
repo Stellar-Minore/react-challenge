@@ -1,19 +1,19 @@
-import { Switch, Route } from 'react-router-dom';
-import Profile from '../profile';
-import ImageDetails from '../imageDetails';
+import { Routes, Route } from 'react-router-dom';
+import { Profile } from '../profile';
+import { ImageDetails } from '../imageDetails';
 
 function App() {
   return (
     <div>
-      <Switch>
+      <Routes>
         { /* profile screen */}
-        <Route path="/" exact><Profile /></Route>
+        <Route path="/" element={<Profile />} />
 
         { /* image details screen */}
-        <Route path="/image_details/:id" component={ImageDetails} exact />
-      </Switch>
+        <Route path="/image_details/:id" element={<ImageDetails />} />
+      </Routes>
     </div>
   );
 }
 
-export default App;
+export { App };
