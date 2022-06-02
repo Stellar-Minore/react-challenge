@@ -1,1 +1,1 @@
-export { default } from './imageDetails';
+export { ImageDetails } from './imageDetails';
