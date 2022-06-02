@@ -1,11 +1,12 @@
-import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Styles from './imageDetails.module.css';
 
 function ImageDetails(props) {
   const imageNumber = 0;
+  const location = useLocation();
 
-  if (!sessionStorage.getItem(`image-${imageNumber}`) && props.location.image) {
-    sessionStorage.setItem(`image-${imageNumber}`, props.location.image);
+  if (!sessionStorage.getItem(`image-${imageNumber}`) && location.state.image) {
+    sessionStorage.setItem(`image-${imageNumber}`, location.state.image);
   }
 
   return (
@@ -16,4 +17,4 @@ function ImageDetails(props) {
   )
 }
 
-export default ImageDetails;
+export { ImageDetails };
