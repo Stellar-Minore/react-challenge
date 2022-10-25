@@ -12,9 +12,9 @@ function Profile() {
 
   useEffect(() => {
     AxiosConfig.get('/anime/38000').then(response => {
-      setProfileImage(response.data.image_url);
-      setEpisodeCount(response.data.episodes);
-      setRank(response.data.rank);
+      setProfileImage(response.data.data.images.jpg.image_url);
+      setEpisodeCount(response.data.data.episodes);
+      setRank(response.data.data.rank);
     }).catch(error => {
       console.log(error)
     });
